@@ -1,5 +1,5 @@
 config:
-    STACK_NAME: 'persianpapa-dot-com'
+    STACK_NAME: 'photos-dot-cristianpoll-dot-com'
     AWS_REGION_NAME: 'us-east-1'
     CF_TEMPLATE_BUCKET: 'cloudformation-templates-h2vf91g7'
-    DOMAIN_NAME: 'persianpapa.com'
+    DOMAIN_NAME: 'photos.cristianpoll.com'
