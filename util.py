@@ -28,7 +28,7 @@ def create_or_update_stack(stack_name, template, stack_policy, aws_region_name,
     # Create the stack
     stack_params = {
         'StackName': stack_name,
-        'TimeoutInMinutes': 30,
+        'TimeoutInMinutes': 90,
         'Capabilities': ['CAPABILITY_IAM', 'CAPABILITY_NAMED_IAM'],
         # 'ResourceTypes':['AWS::IAM::Role'],
         # 'RoleARN':'string',

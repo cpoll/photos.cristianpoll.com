@@ -112,7 +112,12 @@ CloudfrontDistribution = t.add_resource(cloudfront.Distribution(
         ),
         DefaultRootObject='index.html',
         Enabled=True,
-        HttpVersion='http2'
+        HttpVersion='http2',
+        # Logging=cloudfront.Logging(
+        #     Bucket=GetAtt(CloudfrontLogBucket, 'DomainName'),
+        #     IncludeCookies=False
+        # ),
+        PriceClass='PriceClass_100',
     ),
     Tags=Tags(**shared_tags_args)
 ))
