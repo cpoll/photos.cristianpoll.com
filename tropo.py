@@ -2,8 +2,7 @@ import os
 
 import yaml
 from troposphere import Base64, Join, Ref, Template, GetAtt, Output, Export, Tags, Split, Select, ImportValue
-from troposphere import (
-    ec2, elasticloadbalancingv2, autoscaling, iam, ecs, s3, cloudwatch, sns, kms, certificatemanager, route53, cloudfront)
+from troposphere import s3, certificatemanager, route53, cloudfront
 
 from util import create_or_update_stack
 
@@ -37,10 +36,10 @@ shared_tags_args = {
 #
 # Furthermore, DNS validation is not supported (only email validation)
 #
-# Workaround: 
+# Workaround:
 # - Run CloudFormation with this commented out the first time
 # - Set up DNS (NS pointing to hosted zone) and webmaster@domain
-# 
+#
 
 CloudFrontCertificate = t.add_resource(certificatemanager.Certificate(
     'CloudFrontCertificate',
@@ -96,9 +95,9 @@ CloudfrontDistribution = t.add_resource(cloudfront.Distribution(
         Aliases=[CONFIG['DOMAIN_NAME']],
         Origins=[
             cloudfront.Origin(
-                Id="Origin 1", 
+                Id="Origin 1",
                 DomainName=GetAtt(StaticHostingPublicBucket, 'DomainName'),
-                S3OriginConfig=cloudfront.S3Origin())
+                S3OriginConfig=cloudfront.S3OriginConfig())
         ],
         ViewerCertificate=cloudfront.ViewerCertificate(
             AcmCertificateArn=Ref(CloudFrontCertificate),
